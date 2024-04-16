@@ -296,6 +296,38 @@ public class CarDealershipController {
     }
 
     /**
+     * Name: editSelectedCar
+     * <p>
+     * Edit the select car to the view and database.
+     * It calls editSelectedCar(String filePath)
+     */
+    @FXML
+    private void editSelectedCar() {
+        if (filePath != null && !filePath.isEmpty()) {
+            editSelectedCar(filePath);
+        } else {
+            System.err.println("Error: File path is not set.");
+        }
+    }
+
+    /**
+     * Name: editSelectedCar
+     * <p>
+     * (HANDLING DATABASE)
+     * this is to make sure that the user can be able to select
+     * a car and edit it with the button. It will then go through
+     * the editCarDialog in which the user has to fill out.
+     *
+     * @param filePath sets the file path
+     */
+    public void editSelectedCar(String filePath) {
+        Car selectedCar = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCar != null) {
+            editCarDialog(selectedCar, filePath);
+        }
+    }
+
+    /**
      * Name: FXML uploadFile
      * <p>
      * This is what the user will be seeing when they select the upload File
@@ -433,38 +465,6 @@ public class CarDealershipController {
             return null;
         });
         dialog.showAndWait();
-    }
-
-    /**
-     * Name: editSelectedCar
-     * <p>
-     * Edit the select car to the view and database.
-     * It calls editSelectedCar(String filePath)
-     */
-    @FXML
-    private void editSelectedCar() {
-        if (filePath != null && !filePath.isEmpty()) {
-            editSelectedCar(filePath);
-        } else {
-            System.err.println("Error: File path is not set.");
-        }
-    }
-
-    /**
-     * Name: editSelectedCar
-     * <p>
-     * (HANDLING DATABASE)
-     * this is to make sure that the user can be able to select
-     * a car and edit it with the button. It will then go through
-     * the editCarDialog in which the user has to fill out.
-     *
-     * @param filePath sets the file path
-     */
-    public void editSelectedCar(String filePath) {
-        Car selectedCar = tableView.getSelectionModel().getSelectedItem();
-        if (selectedCar != null) {
-            editCarDialog(selectedCar, filePath);
-        }
     }
 
 
