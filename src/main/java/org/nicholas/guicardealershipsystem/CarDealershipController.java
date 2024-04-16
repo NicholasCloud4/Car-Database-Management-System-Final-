@@ -214,6 +214,18 @@ public class CarDealershipController {
             }
         });
 
+        makeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                makeField.setText(oldValue);
+            }
+        });
+
+        colorField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                colorField.setText(oldValue);
+            }
+        });
+
         priceField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*(\\.\\d*)?")) {
                 priceField.setText(oldValue);
@@ -357,9 +369,22 @@ public class CarDealershipController {
         TextField priceField = new TextField();
         priceField.setPromptText("Price");
 
+        // Add listeners to ensure only certain input
         yearField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 yearField.setText(newValue.replaceAll("\\D", ""));
+            }
+        });
+
+        makeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                makeField.setText(oldValue);
+            }
+        });
+
+        colorField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                colorField.setText(oldValue);
             }
         });
 
