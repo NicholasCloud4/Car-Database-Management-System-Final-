@@ -474,6 +474,33 @@ public class CarDealershipController {
         String modelFilter = modelFilterField.getText().trim();
         String colorFilter = colorFilterField.getText().trim();
 
+        //Year must only be numbers
+        if (!yearFilter.isEmpty() && !yearFilter.matches("\\d+")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("Please enter Numbers for year field");
+            alert.showAndWait();
+            return;
+        }
+
+        // Model cannot contain numbers
+        if (!makeFilter.isEmpty() && makeFilter.matches(".*\\d+.*")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("Please enter only Text for model field");
+            alert.showAndWait();
+            return;
+        }
+
+        //Color must only have text
+        if (!colorFilter.isEmpty() && colorFilter.matches(".*\\d+.*")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("Please enter only Text for color field");
+            alert.showAndWait();
+            return;
+        }
+
         // Check if at least one filter field contains a value
         if (yearFilter.isEmpty() && makeFilter.isEmpty() && modelFilter.isEmpty() && colorFilter.isEmpty()) {
             // Show a message that a filter needs to be applied
